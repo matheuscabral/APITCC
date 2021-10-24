@@ -1,0 +1,35 @@
+{% extends "Home.html" %}
+{% block content %}
+    <div class = "row" style = "border-bottom: 1px solid #e9e9e9;">
+        <h4 style = "text-align: center;">Vagas</h4>
+        <a href="http://localhost:8080/index.php?pagina=vaga&metodo=add">
+            <button type="button" class="btn btn-secondary addVaga">Adicionar Vaga</button>
+        </a><br>
+    </div><br>
+    {% for vaga in vagas %}
+        <div class="row" style = "border-bottom: 1px solid #e9e9e9;">
+            <div class="col" style = "max-width: 40%;">
+                <label><b>Titulo:&nbsp;{{vaga.titulo}}</b></label>
+            </div>
+            <div class="col" style = "max-width: 30%;">
+                <label><b>Estado:</b>&nbsp;<b style="color: rgb(138, 230, 64)">{{vaga.estatus}}</b></label>
+            </div>
+            <label><b>Descrição:</b>&nbsp;{{vaga.descricao}}</label>
+            <label><b>Area de Interesse:&nbsp;</b>{{vaga.areaInteresse}}</label>
+            <br>
+            <div class="col">
+                <a href="http://localhost:8080/index.php?pagina=vaga&metodo=delete&id={{vaga.id}}">
+                    <button type="button" class="btn btn-secondary">Excluir Vaga</button>
+                </a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="http://localhost:8080/index.php?pagina=vaga&metodo=editar&id={{vaga.id}}">
+                    <button type="button" class="btn btn-secondary">Editar Vaga</button>
+                </a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="http://localhost:8080/index.php?pagina=candidato&id={{vaga.id}}">
+                    <button type="button" class="btn btn-secondary">Selecionar Candidatos</button>
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

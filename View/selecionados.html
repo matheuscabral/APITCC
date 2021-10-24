@@ -1,0 +1,23 @@
+{% extends "Home.html" %}
+{% block content %}
+<div class="container" style="text-align: center; margin-left: 20%; margin-right: auto; margin-top: 5%; margin-bottom: auto;">
+    <div class="row" style="border: 2px solid black; border-radius: 8px; padding: 5px; max-width: 50%;">
+        <label>
+            Gostaria de Enviar um E-mail para os Candidatos selecionados?
+        </label>
+    </div>
+    <br>
+    <div class="row" style="max-width: 50%;">
+        <div class="col">
+            <a href="http://localhost:8080/index.php?pagina=vaga&metodo=fechar&id={{idVaga}}">
+                <button type="button" class="btn btn-secondary" name = "cancelarEmail">Não</button>
+            </a>
+        </div>
+        <div class="col">
+            <a href="http://localhost:8080/index.php?pagina=candidato&metodo=enviar&id={{idVaga}}">
+                <button type="button" class="btn btn-secondary" name = "confirmarEmail">Sim</button>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

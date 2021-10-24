@@ -1,0 +1,25 @@
+{% extends "Home.html" %}
+{% block content %}
+{% for vaga in vagas %}
+<div class="container" style="text-align: center; margin-left: 20%; margin-right: auto; margin-top: 5%; margin-bottom: auto;">
+    <div class="row" style="border: 2px solid black; border-radius: 8px; padding: 5px; max-width: 50%;">
+        <label>
+            Gostaria de fechar a vaga <b>{{vaga.titulo}}</b>?
+        </label>
+    </div>
+    <br>
+    <div class="row" style="max-width: 50%;">
+        <div class="col">
+            <a href="http://localhost:8080/index.php?pagina=vaga">
+                <button type="button" class="btn btn-secondary" name = "cancelarFecharVaga">Não</button>
+            </a>
+        </div>
+        <div class="col">
+            <a href="http://localhost:8080/index.php?pagina=vaga&metodo=fecharVaga&id={{vaga.id}}">
+                <button type="button" class="btn btn-secondary" name = "confirmarFecharVaga">Sim</button>
+            </a>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

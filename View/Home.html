@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+    <html lang = "pt-br">
+        <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1" charset ="UTF-8">
+            <link rel="stylesheet" type="text/css" href="..\estilo\css\bootstrap.min.css">
+            <link rel = "stylesheet" type="text/css" href="..\estilo\css\estilo.css">
+            <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Changa+One" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        </head>
+    <body>
+        <div class = "container-fluid">
+            <div class = "row div">
+                <div class = "col" >
+                    <img src = "..\img\logo.png" alt = "logo UVV" class = "cabecalhoimg" width="250" height="250">
+                </div>
+                <div class = "col">
+                    <h3 class = "cabecalho">Carreiras Empresa</h3>
+                </div>
+                <div class = "col">
+                    <img src="{{fotos}}" alt = "imagem do perfil" width="70" height="auto" class="imgLogo">
+                </div>
+            </div><!--cabeçalho-->
+
+            <div class = "row">
+                <div class = "col-auto div barraDeMenu">
+                    <a href = "http://localhost:8080/index.php?pagina=empresa">
+                        <div class = "row" style = "border-bottom: 1px solid #e9e9e9;">
+                            <div class = "col">
+                                <img src = "..\img\perfil.png" alt = "imagem de perfil" width="40" height="auto" style = "padding-top: 20px; padding-bottom: 20px;">
+                            </div>
+                            <div class = "col">
+                                <h5 class = "itemMenu" style = "position: relative; top : 11px; left : -10px; bottom: auto; right: auto;"> Perfil </h5>
+                            </div>
+                        </div><!--barra de menu lateral perfil-->
+                    </a>
+                    <a href = "http://localhost:8080/index.php?pagina=vaga">
+                        <div class = "row" style = "border-bottom: 1px solid #e9e9e9;">
+                            <div class = "col">
+                                <img src = "..\img\vaga.png" alt = "imagem de vaga" width="40" height="auto" style = "padding-top: 20px; padding-bottom: 20px;">
+                            </div>
+                            <div class = "col">
+                                <h5 class = "itemMenu" style = "position: relative; top : 5px; left : -10px; bottom: auto; right: auto;"> Vagas </h5>
+                            </div>
+                        </div><!--barra de menu lateral vagas-->
+                    </a>
+                    <a href = "">
+                        <div class = "row" style = "border-bottom: 1px solid #e9e9e9;">
+                            <div class = "col">
+                                <img src = "..\img\relatorio.png" alt = "imagem de relatorio" width="40" height="auto" style = "padding-top: 20px; padding-bottom: 20px;">
+                            </div>
+                            <div class = "col">
+                                <h5 class = "itemMenu" style = "position: relative; top : 16px; left : -10px; bottom: auto; right: auto;"> Relatórios </h5>
+                            </div>
+                        </div><!--barra de menu lateral relatorio-->
+                    </a>
+                    <a href = "http://localhost:8080/index.php?pagina=home&metodo=logout">
+                        <div class = "row" style = "border-bottom: 1px solid #e9e9e9;">
+                            <div class = "col">
+                                <img src = "..\img\saida.png" alt = "imagem de sair" width="40" height="auto" style = "padding-top: 20px; padding-bottom: 20px;">
+                            </div>
+                            <div class = "col">
+                                <h5 class = "itemMenu" style = "position: relative; top : 8px; left : -10px; bottom: auto; right: auto;"> Sair </h5>
+                            </div>
+                        </div><!--barra de menu lateral sair-->
+                    </a>
+                </div><!--barra de menu lateral-->
+                <div class = "col div template" id="conteudo">
+                    {% block content %}
+                    {% endblock %}
+                </div><!--template-->
+            </div><!--corpo-->
+    </body>
+    </html>

@@ -1,0 +1,80 @@
+{% extends "Home.html" %}
+{% block content %}
+<script>
+    var expanded = false;
+
+    function showCheckboxes() {
+        var checkboxes = document.getElementById("checkboxes");
+        if (!expanded) {
+            checkboxes.style.display = "block";
+            expanded = true;
+        } else {
+            checkboxes.style.display = "none";
+            expanded = false;
+        }
+    }
+</script>
+<div class = "row" style = "border-bottom: 1px solid #e9e9e9;">
+    <h3 style = "text-align: center;">Nova Vaga</h3>
+</div><br>
+<div class="row">
+    <form class="px-4 py-3" method="post" action="?pagina=vaga&metodo=inserir">
+        <div class="row">
+            <div class="col" style = "text-align: center; max-width: 15%;">
+                <span><b>Titulo: </b></span><br><br><br>
+                <span><b>Descrição: </b></span><br><br><br><br><br>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control inputVaga" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id = "inptitulo" name="titulo">
+                <br>
+                <textarea class="form-control" aria-label="With textarea" id = "inpdescricao" name="descricao"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" style = "text-align: center; max-width: 15%;">
+                <span><b>Área de Interesse: </b></span>
+            </div>
+            <div class="col" >
+                <div class="multiselect">
+                    <div class="selectBox" onclick="showCheckboxes()">
+                        <select>
+                            <option>Selecione as Áreas de Interesse</option>
+                        </select>
+                        <div class="overSelect"></div>
+                        </div>
+                        <div id="checkboxes">
+                            <label for="Ciência da Computação">
+                            <input type="checkbox" id="Ciência da Computação" name = "areaInteresse[]" value = "Ciência da Computação"/>Ciência da Computação</label>
+                            <label for="Direito">
+                            <input type="checkbox" id="Direito" name = "areaInteresse[]" value="Direito"/>Direito</label>
+                            <label for="Engenharia Civil">
+                            <input type="checkbox" id="Engenharia Civil" name = "areaInteresse[]" value="Engenharia Civil"/>Engenharia Civil</label>
+                            <label for="Engenharia de Computação">
+                            <input type="checkbox" id="Engenharia de Computação" name = "areaInteresse[]" value="Engenharia de Computação"/>Engenharia de Computação</label>
+                            <label for="Jornalismo">
+                            <input type="checkbox" id="Jornalismo" name = "areaInteresse[]" value = "Jornalismo"/>Jornalismo</label>
+                            <label for="Medicina Veterinária">
+                            <input type="checkbox" id="Medicina Veterinária" name = "areaInteresse[]" value="Medicina Veterinária"/>Medicina Veterinária</label>
+                            <label for="Odontologia">
+                            <input type="checkbox" id="Odontologia" name = "areaInteresse[]" value="Odontologia"/>Odontologia</label>
+                            <label for="Sistemas de Informação">
+                            <input type="checkbox" id="Sistemas de Informação" name = "areaInteresse[]" value="Sistemas de Informação"/>Sistemas de Informação</label>
+                        </div>
+                    </div>        
+                </div>
+                <br><br><br><br>
+                <div class="row">
+                    <div class="col">
+                        <a href="http://localhost:8080/index.php?pagina=vaga">
+                            <button type="button" class="btn btn-secondary" name = "cancelarCadastro">Cancelar</button>
+                        </a>
+                    </div>
+                    <div class="col inputVaga">
+                            <button type="submit" class="btn btn-secondary" >Confirmar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

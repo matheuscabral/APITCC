@@ -1,0 +1,51 @@
+{% extends "Home.html" %}
+{% block content %}
+<div class = "row" style = "border-bottom: 1px solid #e9e9e9;">
+    <h4 style = "text-align: center;">Candidatos</h4>
+</div>
+<div class="row" style = "border-bottom: 1px solid #e9e9e9;">
+    <div class="col" style="max-width: 8%; border-right: 1px solid #e9e9e9;">
+        <label><b>Escolhido</b></label>
+    </div>
+    <div class="col" style="max-width: 80%; border-right: 1px solid #e9e9e9;">
+        <label><b>Estudante</b></label>
+    </div>
+    <div class="col">
+        <label style="position: relative; top : auto; left : 4%; bottom: auto; right: auto;"><b>Currículos</b></label>
+    </div>
+</div>
+{% if candidatos == false %}
+<div class="row" style = "border-bottom: 1px solid #e9e9e9;">
+    <p style="text-align: center;"><b>Nenhum Candidato</b></p>
+</div>
+{% else %}
+<div class="row" style = "border-bottom: 1px solid #e9e9e9;">
+    <form method="post" action="?pagina=candidato&metodo=selecionados">
+    {% for candidato in candidatos %}
+        <div class="row">
+            <div class="col" style="max-width: 8%; border-right: 1px solid #e9e9e9;">
+                <input type="checkbox" name="escolhido[]" value="{{candidato.id}}" style="position: relative; top : auto; left : 40%; bottom: auto; right: auto; ">
+            </div>
+            <div class="col" style="max-width: 80%; border-right: 1px solid #e9e9e9;">
+                <p>{{candidato.matriculaEstudante}}</p>
+            </div>
+            <div class="col">
+                <a href="{{candidato.curriculo}}" class="btn" download><i class="fa fa-download"></i>Download</a>
+            </div>
+        </div>
+    {% endfor %}
+        <div class="row" style="border-top: 1px solid #e9e9e9;">
+            <br>
+            <div class="col">
+                <a href="http://localhost:8080/index.php?pagina=vaga">
+                    <button type="button" class="btn btn-secondary" name = "cancelarSelecao">Cancelar</button>
+                </a>
+            </div>
+            <div class="col" style="position: relative; top: auto; left: 20%; right: auto; bottom: auto;">
+                <button type="submit" class="btn btn-secondary">Selecionar</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endif %}
+{% endblock %}

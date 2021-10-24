@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+    <html lang = "pt-br">
+        <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1" charset ="UTF-8">
+            <link rel="stylesheet" type="text/css" href="..\estilo\css\bootstrap.min.css">
+            <link rel = "stylesheet" type="text/css" href="..\estilo\css\estilo.css">
+            <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Changa+One" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row login">
+                <div class="row">
+                    <p style="text-align: center;"><b>Login</b></p>
+                </div>
+                <form method="post" action="http://localhost:8080/index.php?pagina=login&metodo=check">
+                    <div class="row">
+                        <p style="text-align: left;"><b>E-mail</b></p>
+                    </div>
+                    <div class="row">
+                        <input type="text" class="form-control inputLogin" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="email">
+                    </div>
+                    <br>
+                    <div class="row">
+                        <p style="text-align: left;"><b>Senha</b></p>
+                    </div>
+                    <div class="row">
+                        <input type="password" class="form-control inputLogin" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="senha">
+                    </div>
+                    <br>
+                    <div class="row">
+                        <button type="submit" class="btn btn-secondary buttonLogin" name="login">login</button>
+                    </div>
+                    <br>
+                </form>
+            </div>
+        </div>
+    </body>
+    </html>

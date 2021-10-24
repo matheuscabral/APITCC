@@ -1,0 +1,36 @@
+{% extends "Home.html" %}
+{% block content %}
+    <form method="post" action="?pagina=candidato&metodo=email&id={{idVaga}}">
+        <div class="container-fluid">
+            <br><br>
+            <div class="row">
+                <div class="col" style="max-width: 10%;">
+                    <p><b>Titulo:</b></p>
+                </div>
+                <div class="col">
+                    <input type="text" id="inptitulo" name="titulo">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col" style="max-width: 10%;">
+                    <p><b>Corpo:</b></p>
+                </div>
+                <div class="col">
+                    <textarea class="form-control" aria-label="With textarea" id = "inpcorpo" name="corpo"></textarea>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <a href="http://localhost:8080/index.php?pagina=vaga&metodo=fechar&id={{idVaga}}">
+                        <button type="button" class="btn btn-secondary" name = "cancelarEmail">Cancelar</button>
+                    </a>
+                </div>
+                <div class="col">
+                        <button type="submit" class="btn btn-secondary" name = "confirmarEmail">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}
