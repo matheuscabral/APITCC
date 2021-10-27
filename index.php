@@ -8,6 +8,7 @@
     require_once 'Controller/CandidatoController.php';
     require_once 'Controller/LoginController.php';
     require_once 'Controller/HomeController.php';
+    require_once 'Controller/RelatorioController.php';
     require_once 'Model/Empresa.php';
     require_once 'Model/Vaga.php';
     require_once 'Model/Candidato.php';

@@ -1,0 +1,39 @@
+{% extends "Home.html" %}
+{% block content %}
+    <div class="row "style = "border-bottom: 1px solid #e9e9e9;">
+        <h4 style = "text-align: center;">Relatório</h4>
+    </div>
+    <br>
+    <form method="post" action="http://localhost:8080/index.php?pagina=relatorio&metodo=geraRelatorio">
+        <div class="row" style = "border-bottom: 1px solid #e9e9e9;">
+            <div class="col">
+                <span class="inputDate">Data Inicio: </span>
+                <input type="date" class="inputDate" data-date-format="mm/dd/yyyy" name="dataIni">
+            </div>
+            <div class="col">
+                <span class="inputDate">Data Fim: </span>
+                <input type="date" class="inputDate" data-date-format="mm/dd/yyyy" name="dataFim">
+            </div>
+            <div class="col">
+                <button class="btn btn-secondary buttonRel" type="submit" name="geraRelatorio">Busca</button>
+            </div>
+        </div>
+    </form>
+    {% if vagas == true %}
+        <div class="row" style = "border-bottom: 1px solid #e9e9e9;">
+            <button class="btn btn-secondary imprimir" name="imp" type="button">Imprimir</button>
+        </div>
+    {% endif %}
+    {% for vaga in vagas%}
+        <div class="row" style = "border-bottom: 1px solid #e9e9e9;">
+            <label><b>Titulo:&nbsp;{{vaga.titulo}}</b></label>
+            <label><b>Descrição:</b>&nbsp;{{vaga.descricao}}</label>
+            <label><b>Area de Interesse:&nbsp;</b>{{vaga.areaInteresse}}</label>
+        </div>
+        {% for candidato in vaga.candidatos %}
+        <div class="row" style = "border-bottom: 1px solid #e9e9e9;">
+            <label><b>Candidato:&nbsp;{{candidato.matriculaEstudante}}</b></label>
+        </div>
+        {% endfor %}
+    {% endfor %}
+{% endblock %}

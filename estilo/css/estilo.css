@@ -21,6 +21,31 @@ a:hover{
     border-radius: 20px;
 }
 
+.imprimir{
+  position: relative;
+  top : auto;
+  left : 80%;
+  bottom: auto;
+  right: auto;
+  max-width:10%;
+}
+
+.inputDate{
+  position: relative;
+  top : auto;
+  left : 20%;
+  bottom: auto;
+  right: auto;
+}
+
+.buttonRel{
+  position: relative;
+  top : auto;
+  left : 39%;
+  bottom: 15%;
+  right: auto;
+}
+
 .imgLogo{
   position: relative;
   top : auto;

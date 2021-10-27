@@ -4,15 +4,15 @@
         public function index()
         {
             try{
-                $vagas = Vaga::getVagas();
-                $loader = new \Twig\Loader\FilesystemLoader('View');
-                $twig = new \Twig\Environment($loader);
-                $template = $twig->load('ViewVaga.html');
-                $parametros = array();
-                $parametros['vagas']=$vagas;
+                $vagas = Vaga::getVagas();// acessando a model vaga
+                $loader = new \Twig\Loader\FilesystemLoader('View'); // Carrega os modelos do sistema de arquivos.
+                $twig = new \Twig\Environment($loader); // Armazenar a configuração e extensão do modelo
+                $template = $twig->load('ViewVaga.html'); // carrega o modelo
+                $parametros = array(); // Inicia a variavel parametros que a view receberá
+                $parametros['vagas']=$vagas; // Seta os valores dos parametros
                 $parametros['fotos']=$_SESSION['user']['foto'];
-                $conteudo = $template->render($parametros);
-                echo $conteudo;
+                $conteudo = $template->render($parametros); // renderiza o modelo com os parametros
+                echo $conteudo; // exibi a view
             }catch(Exception $e){
                 echo $e->getMessage();
             }

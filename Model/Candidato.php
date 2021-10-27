@@ -42,10 +42,27 @@
             }
         }
 
-        public static function getCandidatos($idVaga){
-            
+        public static function getSelecionados($idVaga){
             $conn = Conexao::getConn();
-            $sql = "select c.id,c.matriculaEstudante,p.curriculo,p.areaInteresse,c.id_vaga from candidato c inner join perfil p on c.matriculaEstudante = p.matriculaEstudante where c.id_vaga = :id and c.estadoVaga != :estado ";
+            $sql = "select c.id,c.matriculaEstudante,p.curriculo,p.areaInteresse,c.id_vaga from candidato c inner join perfil p on c.matriculaEstudante = p.matriculaEstudante where c.id_vaga = :id and c.estadoVaga = :estado;";
+            $preparando = $conn->prepare($sql);
+            $preparando->bindValue(':id',$idVaga, PDO::PARAM_INT);
+            $preparando->bindValue(':estado',"selecionado");
+            $preparando->execute();
+            $resultado = [];
+            while($row = $preparando->fetchObject('Candidato')){
+                $row->id = utf8_encode($row->id);
+                $row->matriculaEstudante = utf8_encode($row->matriculaEstudante);
+                $row->areaInteresse = utf8_encode($row->areaInteresse);
+                $row->curriculo = utf8_encode($row->curriculo);
+                $resultado[] = $row;
+            }
+            return $resultado;
+        }
+
+        public static function getCandidatos($idVaga){
+            $conn = Conexao::getConn();
+            $sql = "select c.id,c.matriculaEstudante,p.curriculo,p.areaInteresse,c.id_vaga from candidato c inner join perfil p on c.matriculaEstudante = p.matriculaEstudante where c.id_vaga = :id and c.estadoVaga != :estado;";
             $preparando = $conn->prepare($sql);
             $preparando->bindValue(':id',$idVaga, PDO::PARAM_INT);
             $preparando->bindValue(':estado',"selecionado");

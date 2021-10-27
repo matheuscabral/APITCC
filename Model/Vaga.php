@@ -3,26 +3,64 @@
     require_once 'Model/Candidato.php';
     class Vaga
     {
+        public static function getVagasFechadas($dataIni, $dataFim)
+        {
+            $date1=date_create($dataIni);
+            $date2=date_create($dataFim);
+            $diff = date_diff($date1, $date2);
+            if($diff->format("%R%a")<0){
+                throw new Exception("ERRO 28: diferença de tempo menor que 0(zero)");
+            }
+            $conn = Conexao::getConn();
+            $sql = "select * from vaga where estatus = 'fechada' and dataCriacao >= :ini and dataCriacao <= :fim;";
+            $preparando = $conn->prepare($sql);
+            $preparando->bindValue(':ini', $dataIni);
+            $preparando->bindValue(':fim',$dataFim);
+            if($preparando->execute())
+            {
+                $resultado = [];
+                while($row = $preparando->fetchObject('Vaga'))
+                {
+                    $row->id = utf8_encode($row->id);
+                    $row->estatus = utf8_encode($row->estatus);
+                    $row->dataCriacao = utf8_encode($row->dataCriacao);
+                    $row->descricao = utf8_encode($row->descricao);
+                    $row->areaInteresse = utf8_encode($row->areaInteresse);
+                    $row->id_empresa = utf8_encode($row->id_empresa);
+                    $row->titulo = utf8_encode($row->titulo);
+                    $row->candidatos = Candidato::getSelecionados($row->id);
+                    $resultado[] = $row;
+                }
+                return $resultado;
+            }else{
+                throw new Exception("ERRO 31: erra na recuperação das vagas fechadas");
+            }
+        }
+
         public static function getVagas()
         {
             $conn = Conexao::getConn();
             $sql = "select * from vaga where estatus = 'aberta' and id_empresa = :id order by dataCriacao ";
             $preparando = $conn->prepare($sql);
             $preparando->bindValue(':id',intval($_SESSION['user']['id']),PDO::PARAM_INT);
-            $preparando->execute();
-            $resultado = [];
-            while($row = $preparando->fetchObject('Vaga'))
+            if($preparando->execute())
             {
-                $row->id = utf8_encode($row->id);
-                $row->estatus = utf8_encode($row->estatus);
-                $row->dataCriacao = utf8_encode($row->dataCriacao);
-                $row->descricao = utf8_encode($row->descricao);
-                $row->areaInteresse = utf8_encode($row->areaInteresse);
-                $row->id_empresa = utf8_encode($row->id_empresa);
-                $row->titulo = utf8_encode($row->titulo);
-                $resultado[] = $row;
+                $resultado = [];
+                while($row = $preparando->fetchObject('Vaga'))
+                {
+                    $row->id = utf8_encode($row->id);
+                    $row->estatus = utf8_encode($row->estatus);
+                    $row->dataCriacao = utf8_encode($row->dataCriacao);
+                    $row->descricao = utf8_encode($row->descricao);
+                    $row->areaInteresse = utf8_encode($row->areaInteresse);
+                    $row->id_empresa = utf8_encode($row->id_empresa);
+                    $row->titulo = utf8_encode($row->titulo);
+                    $resultado[] = $row;
+                }
+                return $resultado;
+            }else{
+                throw new Exception("ERRO 30: erra na recuperação das vagas");
             }
-            return $resultado;
         }
 
         public static function deleteVaga($idVaga){
