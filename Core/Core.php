@@ -3,19 +3,16 @@
     {
         public function start($urlGet)
         {
-            if(isset($urlGet['pagina'])){
-                $controller = ucfirst($urlGet['pagina']."Controller");
-                if (!class_exists($controller))
-                {
-                    $controller = 'ErroController';
+            if(isset($_SESSION['user'])){
+                if(isset($urlGet['pagina'])){
+                    $controller = ucfirst($urlGet['pagina']."Controller");
+                    if (!class_exists($controller))
+                    {
+                        $controller = 'ErroController';
+                    }
                 }
-            }else
-            {
-                if(isset($_SESSION['user'])){
-                    $controller = 'EmpresaController';
-                }else{
-                    $controller = 'LoginController';
-                }
+            }else{
+                $controller = 'LoginController';
             }
             if(isset($urlGet['metodo'])){
                 $acao = $urlGet['metodo'];
