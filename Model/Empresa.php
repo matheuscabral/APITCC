@@ -54,13 +54,13 @@
             $preparando->bindValue(':id',$_SESSION['user']['id_endereco'], PDO::PARAM_INT);
             if($preparando->execute()){
                 $preparando = $conn->prepare($sql1);
-                $preparando->bindValue(':nome',$dados['nomeFantasia']);
+                $preparando->bindValue(':nome',utf8_decode($dados['nomeFantasia']));
                 $preparando->bindValue(':cnpj',$dados['cnpj']);
-                $preparando->bindValue(':esc',$dados['escopo']);
+                $preparando->bindValue(':esc',utf8_decode($dados['escopo']));
                 $preparando->bindValue(':foto',$dados['foto']);
                 $preparando->bindValue(':id',$_SESSION['user']['id'], PDO::PARAM_INT);
                 if($preparando->execute()){
-                    $_SESSION['user']['nomeFantasia'] = $dados['nomeFantasia'];
+                    $_SESSION['user']['nomeFantasia'] = utf8_encode($dados['nomeFantasia']);
                     $_SESSION['user']['cnpj'] = $dados['cnpj'];
                     $_SESSION['user']['escopo'] = $dados['escopo'];
                     $_SESSION['user']['foto'] = $dados['foto'];
